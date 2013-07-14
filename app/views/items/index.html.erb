@@ -1,2 +1,21 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<%= form_for @item_new do |f| %>
+  <% @item_new.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :money %>
+  <%= f.text_field :money %><br>
+  <%= f.select :category_id, Category.all.map { |category| [category.name, category.id]} %><br>
+  <%= f.label :purchased_at %>
+  <%= f.date_field :purchased_at %><br>
+  <%= f.submit '保存' %>
+<% end %><br>
+<%= link_to 'カテゴリ追加', :controller => 'categories', :action => 'new' %><br><br>
+<% @item.each do |item| %>
+    用途: <%= item.name %><br>
+    金額: <%= item.money %><br>
+    カテゴリ: <%= item.category.name %><br>
+    日付: <%= item.purchased_at %><br>
+    <%= link_to  '削除', item_path(item), method: :delete, confirm: '本当に削除しますか？' %><br><br>
+<% end %> 

@@ -1,0 +1,5 @@
+<%= link_to '新規作成', new_category_path %>
+<% Category.all.each do |category| %>
+    名前: <%= category.name %>
+    <%= link_to  '削除', category_path(category), method: :delete, confirm: '削除しても宜しいですか？' %>
+<% end %> 

@@ -1,9 +1,7 @@
 Cashbook::Application.routes.draw do
-  get "items/index"
-  get "items/new"
-  get "items/create"
-  get "items/update"
-  get "items/destory"
+  resources :items
+  #, :except => [:show, :edit, :update]
+  resources :categories
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
