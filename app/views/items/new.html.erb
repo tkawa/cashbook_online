@@ -1,8 +1,0 @@
-<%= form_for @category do |f| %>
-  <% @category.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br>
-  <%= f.submit '保存' %>
-<% end %>
