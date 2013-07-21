@@ -12,10 +12,25 @@
   <%= f.submit '保存' %>
 <% end %><br>
 <%= link_to 'カテゴリ追加', :controller => 'categories', :action => 'new' %><br><br>
+  <table>
+    <thead>
+      <tr>
+        <th>日付</th>
+        <th>金額</th>
+        <th>用途</th>
+        <th>カテゴリ</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
 <% @item.reverse_each do |item| %>
-    用途: <%= item.name %><br>
-    金額: <%= item.money %><br>
-    カテゴリ: <%= item.category.name %><br>
-    日付: <%= item.purchased_at %><br>
-    <%= link_to  '削除', item_path(item), method: :delete, confirm: '本当に削除しますか？' %><br><br>
+      <tr>
+        <td><%= item.purchased_at %></td>
+        <td><%= item.money %></td>
+        <td><%= item.name %></td>
+        <td><%= item.category.name %></td>
+        <td><%= link_to  '削除', item_path(item), method: :delete, confirm: '本当に削除しますか？' %></td>
+    </tr>
 <% end %> 
+   </tbody>
+ </table>    
