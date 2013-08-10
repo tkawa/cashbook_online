@@ -1,12 +1,12 @@
-<%= form_for @item_new do |f| %>
-  <% @item_new.errors.full_messages.each do |message| %>
+<%= form_for @item do |f| %>
+  <% @item.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :money %>
   <%= f.text_field :money %><br>
-  <%= f.select :category_id, Category.all.map { |category| [category.name, category.id]} %><br>
+  <%= f.select :category_id, current_user.categories.map { |category| [category.name, category.id]} %><br>
   <%= f.label :purchased_at %>
   <%= f.date_field :purchased_at %><br>
   <%= f.submit '保存' %>
@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-<% @item.reverse_each do |item| %>
+<% @items.each do |item| %>
       <tr>
         <td><%= item.purchased_at %></td>
         <td><%= item.money %></td>

@@ -1,4 +1,11 @@
 Cashbook::Application.routes.draw do
+  root to: 'top#index'
+
+  # For OmniAuth
+  get "/auth/:provider/callback" => "sessions#callback"
+  get "/auth/failure"            => "sessions#failure"
+  get "/logout"                  => "sessions#destroy", as: :logout
+
   resources :items
   #, :except => [:show, :edit, :update]
   resources :categories

@@ -8,16 +8,16 @@ class CategoriesController < ApplicationController
 
   def create
     permitted_params = params.require(:category).permit(:name)
-    @category = Category.new(permitted_params)
+    @category = current_user.categories.new(permitted_params)
     if @category.save 
-      redirect_to categories_path
+      redirect_to items_path
     else
       render 'new'
     end
   end
 
   def destory
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
     @category.destroy
     redirect_to categories_path
   end
